@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<title>Train your martial arts reflexes!</title>
+<head>
+<script>
+var c = 0;
+var t;
+var timer_is_on = 0;
+
+function timedCount() {
+   if(timer_is_on){
+    document.getElementById('txt').value = c;
+    c =  Math.floor((Math.random() * 1000) + 1);
+    //console.log(c);
+    //c = c+1;
+    if (c % 4 == 0) {
+      playNoise();
+    }
+    t = setTimeout("timedCount()", 1000);
+   }
+   else{ 
+    return false;
+  }
+}
+
+function doTimer() {
+    if (!timer_is_on) {
+        timer_is_on = 1;
+        timedCount();
+    }
+}
+
+function stopTimer() {
+    if (timer_is_on) {
+        timer_is_on = 0;
+        timedCount();
+    }
+}
+
+function playNoise(){
+  document.getElementById('audio').play();
+}
+</script> 
+</head>
+<body>
+
+  <audio  id = "audio">
+  <source src="doorbell.wav" type="audio/wav">
+
+Your browser does not support the audio element.
+</audio>
+<span>Train your Reflexes, for every ring you here kick and or punch!</span>
+<form>
+  <input type="button" value="Start!" onClick="doTimer()">
+  <input type="button" value="Stop!" onClick="stopTimer()">
+  <input type="text" id="txt">
+</form>
+
+
+
+</body>
+</html>
